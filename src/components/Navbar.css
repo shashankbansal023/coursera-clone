@@ -1,0 +1,68 @@
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid wheat;
+    position:sticky;
+    top:0;
+    width:100vw;
+    background-color: whitesmoke;
+}
+
+.right{
+    display:none;
+}
+
+.left{
+    display: flex;
+    gap: 20px;
+    margin: 10px;
+    align-items: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+.search{
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 10px;
+    height: 75%;
+    margin:10px 10px 15px ;
+    align-self: center
+
+}
+
+a{
+    text-decoration: none;
+    color:black
+}
+
+@media only screen and (min-width:800px){
+
+    .right{
+        display: flex;
+        gap: 20px;
+        margin: 10px;
+        align-items: center;
+      
+    }
+
+
+
+}
+
+@media only screen and (max-width:800px){
+   
+    .left{
+    position: relative;
+    }
+    .center{
+        position: absolute;
+        left: 80%;
+    }
+}

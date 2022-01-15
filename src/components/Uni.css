@@ -1,0 +1,32 @@
+
+h1{
+    text-align: center;
+}
+
+.uni-block{
+    display:flex;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+.uni-container{
+    background-color:rgb(241, 235, 235);
+    padding: 30px;
+    width: 100%;
+}
+
+.item{
+    min-width: 10vw;
+}
+
+@media only screen and (max-width:800px){
+    .item{
+        min-width: 10vw;
+        margin: 10px;
+    }
+
+    .uni-block{
+        flex-wrap: wrap;
+    }
+}
+

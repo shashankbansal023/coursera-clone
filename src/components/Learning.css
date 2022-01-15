@@ -1,0 +1,45 @@
+.learning-container{
+    display:flex;
+    background-color: rgb(232, 232, 243);
+    padding:50px;
+    margin-top: 100px;
+    margin-bottom: 100px
+}
+
+
+.learning-block{
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    margin:80px;
+}
+
+.button-block{
+    display:flex;
+    gap:20px;
+}
+
+.heading{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.body{
+    font-size:25px;
+}
+
+.foot{
+    font-size: 20px;
+}
+
+button{
+    padding: 20px;
+    background-color: rgb(10, 79, 136);
+    color:white;
+    cursor:pointer;
+}
+
+
+

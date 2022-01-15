@@ -1,0 +1,28 @@
+
+.intro-container{
+    display:flex;
+}
+
+.first-block{
+    margin: 70px 50px 50px 50px;
+}
+
+.img-block{
+    margin: 100px;
+}
+
+.join{
+    background-color: rgb(20, 106, 177);
+    color:white;
+    margin:10px;
+    padding:20px;
+    width: 300px;
+    cursor:pointer;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width:800px){
+    .img-block{
+        display:none;
+    }
+}
