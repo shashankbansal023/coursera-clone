@@ -1,33 +1,18 @@
 import React,{useState} from 'react'
 
-
-
 const Syllabus = () => {
 
-    const [link,setLink] = useState(["show more","show more","show more"]);
-    const [content,setContent] = useState([]);
-    const [firstLink, setFirstLink] = useState("show more");
+    // const [link,setLink] = useState(["show more","show more","show more"]);
+    const [showAndHide, setShoWAndHide] = useState({1:"show more",2:"show more",3:"show more"});
+    const [toggle,setToggle] = useState({1: false, 2:false,3:false});
 
-    const html_element = (
-        <div>
-            <div>
-                <p style={{fontWeight:'bold'}}>2 Videos</p>
-                <p>Introduction and Course Structure : 6 minutes</p>
-                <p>Basic of Web-development : 5 minutes</p>
-            </div>
-            <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>
-            <div>
-                <p style={{fontWeight:'bold'}}>2 readings</p>
-                <p>Welcome : 4 minutes</p>
-                <p>Solution to Problem 1-4: Straight Flush : 10 minutes</p>
-            </div>
-            <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>
-            <div>
-                <p style={{fontWeight:'bold'}}>1 practice exercises</p>
-                <p>Investing Tests : 30 minutes</p>
-            </div>
-        </div>    
-    )
+    
+
+    // const [firstLink, setFirstLink] = useState("show more");
+
+    // const html_element = (
+         
+    // )
 
     const array = [{
      id: 1,
@@ -53,16 +38,15 @@ const Syllabus = () => {
     organize the search for a bugtest, and particularly a method of automating testing called stress-testing.`   
 }]
 
-    function changeContent (index) {
-       
-        let newArray = [...content];
-        let newArray2 = [...link];
-
-        newArray[index-1]!="" ? newArray[index-1] = "" : newArray[index-1] = html_element;
-        setContent(newArray);
+    function toggleContent(index) {
+       const newobj = {...showAndHide};
+       const toggleElement = {...toggle};
+        console.log(toggleElement ,newobj)
         
-        newArray2[index-1] == "show more"? newArray2[index-1] = "show less": newArray2[index-1] = "show more";
-        setLink (newArray2);
+       toggleElement[index] = !toggleElement[index];
+       setToggle(toggleElement);
+       newobj[index] == "show more" ? newobj[index] = "show less": newobj[index] = "show more";
+        setShoWAndHide(newobj);
         
     }
 
@@ -78,8 +62,8 @@ const Syllabus = () => {
             {
                 array.map(item =>{
                     return(
-                        <>
-                        <div key ={item.id} style={{display:'grid',gridTemplateColumns:'1fr 6fr',margin:'30px 0px'}}>
+                        <>       
+         <div key ={item.id} style={{display:'grid',gridTemplateColumns:'1fr 6fr',margin:'30px 0px'}}>
                 <div style={{textAlign:'center'}}>
                     <div style={{textTransform:'uppercase',fontSize:'20px',marginBottom:'20px'}}>Week </div>
                     <div style={{fontSize:'30px'}}>{item.id}</div>
@@ -88,25 +72,44 @@ const Syllabus = () => {
                     <div style={{fontSize:'20px',marginBottom:'20px',fontWeight:'bold'}}>5 hours hours to complete</div>
                     <div style={{fontSize:'20px',marginBottom:'20px',fontWeight:'bold'}}>{item.title}</div>
                     <div>
-                        {item.description}
-                        <span style={{padding:'0px 20px',cursor:'pointer',color:'blue' }} >{firstLink}</span>
-                    </div>
+                    {item.description}
+                        <span style={{padding:'0px 20px',cursor:'pointer',color:'blue' }} >show more</span>
+                   </div>
                     <div style={{margin:'20px 0px',display:'flex'}}>
                         <p>2 videos , 2 readings ,1 exercises</p>
-                         <button style={{padding:'0px 10px',textTransform:'uppercase',textDecoration:'none',cursor:'pointer'}}  onClick={()=>changeContent(item.id)}>{link[item.id-1]}</button>
+                        <button style={{padding:'0px 10px',textDecoration:'none',cursor:'pointer'}}  onClick={()=>toggleContent(item.id)}>{showAndHide[item.id]}</button>
                     </div>
                     <div>
-                      {
-                        content[item.id-1]
-                        }
-                    </div>
-                </div>
-            </div>
-            
-            {
-                item.id!=3 && <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>
-            } 
-             </>          
+                        {
+                            toggle[item.id] == true && 
+                            <>
+                                <div>
+                                    <p style={{fontWeight:'bold'}}>2 Videos</p>
+                                    <p>Introduction and Course Structure : 6 minutes</p>
+                                    <p>Basic of Web-development : 5 minutes</p>
+                                </div>
+                                <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>
+                                <div>
+                                    <p style={{fontWeight:'bold'}}>2 readings</p>
+                                    <p>Welcome : 4 minutes</p>
+                                    <p>Solution to Problem 1-4: Straight Flush : 10 minutes</p>
+                                </div>
+                                <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>
+                                <div>
+                                    <p style={{fontWeight:'bold'}}>1 practice exercises</p>
+                                    <p>Investing Tests : 30 minutes</p>
+                                </div>
+                                </> 
+                            
+                        } 
+                   </div>  
+                  
+               </div>     
+           
+            </div>   
+                        {      
+                            item.id!=3 && <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>     
+                    }</>           
                     )
                 })
 
