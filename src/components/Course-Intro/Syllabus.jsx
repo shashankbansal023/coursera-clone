@@ -1,18 +1,37 @@
 import React,{useState} from 'react'
+import {Button} from '@mui/material'
 
 const Syllabus = () => {
 
-    // const [link,setLink] = useState(["show more","show more","show more"]);
     const [showAndHide, setShoWAndHide] = useState({1:"show more",2:"show more",3:"show more"});
     const [toggle,setToggle] = useState({1: false, 2:false,3:false});
 
-    
+    const [readMore,setReadMore] = useState(['read more','read more','read more']);
 
-    // const [firstLink, setFirstLink] = useState("show more");
+    const readAndShow = (index) =>{
+        let obj = [...readMore];
+        
+        if(obj[index-1] == "read more"){
+            obj[index-1]  = "show less"
+        }else{
+            obj[index-1] = "read more";
+        }
 
-    // const html_element = (
+        setReadMore(obj);
+    }
+
+    function toggleContent(index) {
+        const newobj = {...showAndHide};
+        const toggleElement = {...toggle};
+         console.log(toggleElement ,newobj)
          
-    // )
+        toggleElement[index] = !toggleElement[index];
+        setToggle(toggleElement);
+        newobj[index] == "show more" ? newobj[index] = "show less": newobj[index] = "show more";
+         setShoWAndHide(newobj);
+         
+     }
+ 
 
     const array = [{
      id: 1,
@@ -38,18 +57,7 @@ const Syllabus = () => {
     organize the search for a bugtest, and particularly a method of automating testing called stress-testing.`   
 }]
 
-    function toggleContent(index) {
-       const newobj = {...showAndHide};
-       const toggleElement = {...toggle};
-        console.log(toggleElement ,newobj)
-        
-       toggleElement[index] = !toggleElement[index];
-       setToggle(toggleElement);
-       newobj[index] == "show more" ? newobj[index] = "show less": newobj[index] = "show more";
-        setShoWAndHide(newobj);
-        
-    }
-
+   
 
     return (
         <div style={{padding:'30px'}}>
@@ -72,12 +80,12 @@ const Syllabus = () => {
                     <div style={{fontSize:'20px',marginBottom:'20px',fontWeight:'bold'}}>5 hours hours to complete</div>
                     <div style={{fontSize:'20px',marginBottom:'20px',fontWeight:'bold'}}>{item.title}</div>
                     <div>
-                    {item.description}
-                        <span style={{padding:'0px 20px',cursor:'pointer',color:'blue' }} >show more</span>
+                        { readMore[item.id-1] == 'read more' ? item.description.slice(0,200) + "..." : item.description }
+                        <Button variant="text" size="small" style={{cursor:'pointer',color:'blue',fontWeight:'bold',textTransform:'lowercase'}}onClick={()=>readAndShow(item.id)}>{readMore[item.id-1]}</Button>
                    </div>
                     <div style={{margin:'20px 0px',display:'flex'}}>
                         <p>2 videos , 2 readings ,1 exercises</p>
-                        <button style={{padding:'0px 10px',textDecoration:'none',cursor:'pointer'}}  onClick={()=>toggleContent(item.id)}>{showAndHide[item.id]}</button>
+                        <Button variant="text" style={{fontWeight:'bold',fontSize:'14px'}} size="small" onClick={()=>toggleContent(item.id)}>{showAndHide[item.id]}</Button>
                     </div>
                     <div>
                         {
@@ -109,7 +117,8 @@ const Syllabus = () => {
             </div>   
                         {      
                             item.id!=3 && <hr style={{width:'100%',height:'1px',backgroundColor:'black'}}></hr>     
-                    }</>           
+                    }
+                    </>           
                     )
                 })
 
